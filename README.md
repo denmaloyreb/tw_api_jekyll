@@ -1,1 +1,1 @@
-# tw_api_jekyll
+# Генератор справочника API на Jekyll
