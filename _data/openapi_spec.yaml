@@ -14,6 +14,11 @@ info:
     В версии API 1.0.0 реализовано добавление нового навыка, редактирование навыка, удаление навыка.
   version: 1.0.0
   title: База технических писателей
+servers:
+  - url: https://dev.tw_api.com/v1
+    description: Dev-сервер
+  - url: https://tw_api.com/v1
+    description: Prod-сервер
 tags:
   - name: techwriters
     description: Методы для работы с техническими писателями

@@ -2,5 +2,20 @@
 
 
 <div class="schema_wrapper">
-  {{ spec }}
+  <!-- Рендеринг обязательных параметров схемы: заголовок,версия и описание API -->
+  <h1 class="api-title">{{ spec.info['title'] }} </h1>
+  <div class="api-version">Версия API: {{ spec.info['version'] }}</div>
+  <div class="api-description">
+    <div class="api-description_title">Описание API:</div>
+    {{ spec.info.['description'] | markdownify }}
+  </div>
+  <!-- Рендеринг необязательных параметров схемы: список серверов -->
+  {% if spec.servers %}
+  <div class="api-servers">
+    <div class="api-servers_title">Список серверов:</div>
+    {% for server in spec.servers %}
+    <div class="api-servers_item">{{ server.['description'] }}: {{ server.['url'] }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
 </div>
