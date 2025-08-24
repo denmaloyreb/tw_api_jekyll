@@ -20,7 +20,12 @@ a {
 .schema-toc_paths {
     position: sticky;
     top: 0;
+    /* Прокрутка для toc */
     z-index: 10;
+    background-color: #f5eff5;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .schema-toc_paths {
