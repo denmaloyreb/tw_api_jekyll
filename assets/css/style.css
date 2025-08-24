@@ -1,17 +1,96 @@
+/* Сброс стилей ссылок */
+
+a {
+    text-decoration: none;
+    color: rgb(72, 71, 71);
+}
+
+/* Стили для wrapper */
+
 .wrapper {
     display: flex;
 }
+
+/* Стили для toc */
 
 .schema-toc {
     padding-right: 1%;
 }
 
 .schema-toc_paths {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.schema-toc_paths {
     display: block;
+}
+
+.schema-toc_prefix-get {
+    background-color: rgb(47, 129, 50);
+    color: white;
+}
+
+.schema-toc_prefix-post {
+    background-color: rgb(24, 111, 175);
+    color: white;
+}
+
+.schema-toc_prefix-patch {
+    background-color: rgb(191, 88, 29);
+    color: white;
+}
+
+.schema-toc_prefix-delete {
+    background-color: rgb(204, 51, 51);
+    color: white;
+}
+
+.schema-toc_prefix-put {
+    background-color: rgb(149, 80, 124);
+    color: white;
 }
 
 .schema-toc_link {
     display: block;
     white-space: nowrap;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Стили для таблицы с параметрами метода  */
+
+.parameters-table {
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.parameters-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #d0d7de;
+}
+
+.parameters-table th,
+.parameters-table td {
+    padding: 12px;
+    border: 1px solid #d0d7de;
+    vertical-align: top;
+}
+
+.parameters-table th {
+    background-color: #f6f8fa;
+    font-weight: 600;
+    text-align: left;
+}
+
+.parameters-table code {
+    background-color: #f6f8fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    border: 1px solid #e1e4e8;
 }
 
