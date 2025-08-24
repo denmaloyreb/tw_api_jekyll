@@ -58,7 +58,7 @@
           
           <div class="api-paths_endpoint" id="{{ method }}{{ path }}">
             <!-- Рендеринг названий эндпоинтов -->
-            <div class="{{ method }}"><a href="#{{ method }}{{ path }}"><span class="schema-toc_prefix-{{ method }}">{{ method | upcase}}</span> {{ path }}</a></div>
+            <div class="{{ method }}"><a href="#{{ method }}{{ path }}"><span class="schema-toc_prefix-{{ method }}">{{ method | upcase}}</span><span class="api-paths_path"> {{ path }} </span></a></div>
             <!-- Рендеринг краткого описания (summary) эндпоинтов -->
             {% if operation.summary %}
               <div class="api-paths__endpoint-summary">{{ operation.summary }}</div>

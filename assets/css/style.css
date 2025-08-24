@@ -35,26 +35,36 @@ a {
 .schema-toc_prefix-get {
     background-color: rgb(47, 129, 50);
     color: white;
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
 }
 
 .schema-toc_prefix-post {
     background-color: rgb(24, 111, 175);
     color: white;
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
 }
 
 .schema-toc_prefix-patch {
     background-color: rgb(191, 88, 29);
     color: white;
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
 }
 
 .schema-toc_prefix-delete {
     background-color: rgb(204, 51, 51);
     color: white;
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
 }
 
 .schema-toc_prefix-put {
     background-color: rgb(149, 80, 124);
     color: white;
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
 }
 
 .schema-toc_link {
@@ -62,6 +72,23 @@ a {
     white-space: nowrap;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* Стили для методов */
+
+.api-paths_endpoint {
+    margin-top: 10px;
+}
+
+.api-paths_path {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    opacity: 90%;
+}
+
+.api-paths__endpoint-summary {
+    margin-top: 10px;
 }
 
 /* Стили для таблицы с параметрами метода  */
