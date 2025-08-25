@@ -99,6 +99,13 @@
                 </div>
               </div>
             {% endif %}
+            <!--  Рендеринг тела запроса -->
+            {% if operation.requestBody %}
+              <div class="api-paths__request-body">
+                <div class="api-paths__body">Тело запроса:</div>
+              </div>
+              {{ operation.requestBody}}
+            {% endif %}
           </div>
         {% endfor %}
       {% endfor %}
