@@ -1,0 +1,86 @@
+{% if spec.components %}
+    <h2>Компоненты</h2>
+    <div class="api-components_components">
+
+        {% if spec.components.schemas %}
+            <div class="api-components_schemas">
+            <h3>Schemas</h3>
+            <div class="api-components_schemas_item">
+                {{ spec.components.schemas }}
+            </div>
+            </div>
+        {% endif %}
+        
+        {% if spec.components.parameters %}
+            <div class="api-components_parameters">
+            <h3>Parameters</h3>
+            <div class="api-components_parameters_item">
+                {{ spec.components.parameters }}
+            </div>
+            </div>
+        {% endif %}
+        
+        {% if spec.components.responses %}
+            <div class="api-components_responses">
+            <h3>Responses</h3>
+            <div class="api-components_responses_item">
+                {{ spec.components.responses }}
+            </div>
+            </div>
+        {% endif %}
+        
+        {% if spec.components.examples %}
+            <div class="api-components_examples">
+            <h3>Examples</h3>
+            <div class="api-components_examples_item">
+                {{ spec.components.examples }}
+            </div>
+            </div>
+        {% endif %}
+        
+        {% if spec.components.requestBodies %}
+            <div class="api-components_requestbodies">
+            <h3>RequestBodies</h3>
+            <div class="api-components_requestbodies_item">
+                {{ spec.components.requestBodies }}
+            </div>
+            </div>
+        {% endif %}
+
+        {% if spec.components.headers %}
+            <div class="api-components_headers">
+            <h3>Headers</h3>
+            <div class="api-components_headers_item">
+                {{ spec.components.headers }}
+            </div>
+            </div>
+        {% endif %}
+
+        {% if spec.components.securitySchemes %}
+            <div class="api-components_securityschemes">
+            <h3>SecuritySchemes</h3>
+            <div class="api-components_securityschemes_item">
+                {{ spec.components.securitySchemes }}
+            </div>
+            </div>
+        {% endif %}
+
+        {% if spec.components.links %}
+            <div class="api-components_links">
+            <h3>Links</h3>
+            <div class="api-components_links_item">
+                {{ spec.components.links }}
+            </div>
+            </div>
+        {% endif %}
+
+        {% if spec.components.callbacks %}
+            <div class="api-components_callbacks">
+            <h3>Callbacks</h3>
+            <div class="api-components_callbacks_item">
+                {{ spec.components.callbacks }}
+            </div>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

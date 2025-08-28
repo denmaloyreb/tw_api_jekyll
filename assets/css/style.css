@@ -17,6 +17,14 @@ a {
     padding-right: 1%;
 }
 
+.schema-toc_title,
+.schema-toc_components {
+    margin-top: .7em;
+    margin-bottom: .8em;
+    font-weight: bold;
+    opacity: 75%;
+}
+
 .schema-toc_paths {
     position: sticky;
     top: 0;
@@ -76,6 +84,14 @@ a {
 
 /* Стили для методов */
 
+.api-paths__title,
+.api-paths__body {
+    margin-top: .7em;
+    margin-bottom: .8em;
+    font-weight: bold;
+    opacity: 75%;
+}
+
 .api-paths_endpoint {
     margin-top: 10px;
 }
@@ -85,6 +101,9 @@ a {
     font-weight: bold;
     margin-bottom: 15px;
     opacity: 90%;
+    display: inline-block;
+    transform: translateY(4px);
+    padding-left: 3px;
 }
 
 .api-paths__endpoint-summary {

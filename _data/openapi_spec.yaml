@@ -189,14 +189,7 @@ paths:
             type: integer
             format: int64
             example: 123
-        - name: skillId
-          in: path
-          description: Идентификатор навыка конкретного технического писателя, о котором нужно получить информацию
-          required: true
-          schema:
-            type: integer
-            format: int64
-            example: 25
+        - $ref: '#/components/parameters/SkillId'
       responses:
         '200':
           description: ОК
@@ -627,3 +620,14 @@ components:
       required:
         - techwriterId
         - skillCommonInfo
+  parameters:
+    SkillId:
+      name: skillId
+      in: path
+      description: Идентификатор навыка конкретного технического писателя, о котором нужно получить информацию
+      required: true
+      schema:
+        type: integer
+        format: int64
+        example: 25
+

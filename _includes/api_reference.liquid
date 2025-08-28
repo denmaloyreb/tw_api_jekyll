@@ -1,13 +1,14 @@
 {% assign spec = site.data.openapi_spec %}
+{% comment %} {% assign spec = site.data.pet %} {% endcomment %}
 {% comment %} {% assign spec = site.data.petstore_spec %} {% endcomment %}
 
 <div class="wrapper">
   <div class="schema-toc">
     <div class="schema-toc_paths">
+      <div class="schema-toc_title">Конечные точки</div>
       {% for path_item in spec.paths %}
         {% assign path = path_item[0] %}
         {% assign methods = path_item[1] %}
-        
         {% for method_item in methods %}
           {% assign method = method_item[0] %}
           {% assign operation = method_item[1] %}
@@ -16,6 +17,9 @@
           </div>
         {% endfor %}
       {% endfor %}
+      {% if spec.components %}
+          <div class="schema-toc_components">Компоненты</div>
+      {% endif %}
     </div>
   </div>
 
@@ -47,68 +51,10 @@
     {% endif %}
     <!-- Рендеринг эндпоинтов -->
     <div class="api-paths">
-      <h2>Список конечных точек</h2>
-      {% for path_item in spec.paths %}
-        {% assign path = path_item[0] %}
-        {% assign methods = path_item[1] %}
-        
-        {% for method_item in methods %}
-          {% assign method = method_item[0] %}
-          {% assign operation = method_item[1] %}
-          
-          <div class="api-paths_endpoint" id="{{ method }}{{ path }}">
-            <!-- Рендеринг названий эндпоинтов -->
-            <div class="{{ method }}"><a href="#{{ method }}{{ path }}"><span class="schema-toc_prefix-{{ method }}">{{ method | upcase}}</span><span class="api-paths_path"> {{ path }} </span></a></div>
-            <!-- Рендеринг краткого описания (summary) эндпоинтов -->
-            {% if operation.summary %}
-              <div class="api-paths__endpoint-summary">{{ operation.summary }}</div>
-            {% endif %}
-            <!-- Рендеринг описания (description) эндпоинтов -->
-            {% if operation.description %}
-              <div class="api-paths__endpoint-description">{{ operation.description }}</div>
-            {% endif %}
-            <!-- Рендеринг параметров эндпоинтов -->
-            {% if operation.parameters %}
-              <div class="api-paths__parameters">
-                <div class="api-paths__parameters-list">Параметры:</div>
-                <div class="parameters-table">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>№</th>
-                        <th>Параметр</th>
-                        <th>Тип</th>
-                        <th>Расположение</th>
-                        <th>Обязательный</th>
-                        <th>Описание</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {% for parameter in operation.parameters %}
-                      <tr>
-                        <td>{{ forloop.index }}</td>
-                        <td><strong>{{ parameter.name }}</strong></td>
-                        <td><code>{{ parameter.schema['type'] }}</code></td>
-                        <td>{{ parameter.in }}</td>
-                        <td>{% if parameter.required %}<b>Да</b>{% else %}Нет{% endif %}</td>
-                        <td>{% if parameter.description %}{{ parameter.description | strip }}{% endif %}</td>
-                      </tr>
-                    {% endfor %}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            {% endif %}
-            <!--  Рендеринг тела запроса -->
-            {% if operation.requestBody %}
-              <div class="api-paths__request-body">
-                <div class="api-paths__body">Тело запроса:</div>
-              </div>
-              {{ operation.requestBody}}
-            {% endif %}
-          </div>
-        {% endfor %}
-      {% endfor %}
+      {%- include endpoints.liquid -%}
+    </div>
+    <div class="api-components">
+      {%- include api_components.liquid -%}
     </div>
   </div>
 </div>
