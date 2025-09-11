@@ -12,8 +12,13 @@
         {% for method_item in methods %}
           {% assign method = method_item[0] %}
           {% assign operation = method_item[1] %}
-          <div class="schema-toc_link">
-            <a href="#{{ method }}{{ path }}"><span class="schema-toc_prefix-{{ method }}">{{ method | upcase}}</span> {{ path }}</a>
+          <div class="schema-toc_link_wrapper">
+            <div class="schema-toc_method">
+              <a href="#{{ method }}{{ path }}"><span class="schema-toc_prefix-{{ method }}">{{ method | upcase}}</span></a>
+            </div>
+            <div class="schema-toc_link">
+              <a href="#{{ method }}{{ path }}"><span class="schema-toc_path"> {{ path }} </span></a>
+            </div>
           </div>
         {% endfor %}
       {% endfor %}
@@ -53,6 +58,7 @@
     <div class="api-paths">
       {%- include endpoints.liquid -%}
     </div>
+    <!-- Рендеринг компонентов -->
     <div class="api-components">
       {%- include api_components.liquid -%}
     </div>

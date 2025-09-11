@@ -5,8 +5,14 @@
         {% if spec.components.schemas %}
             <div class="api-components_schemas">
             <h3>Schemas</h3>
-            <div class="api-components_schemas_item">
-                {{ spec.components.schemas }}
+            <div class="api-components_schemas_items">
+                {% for schema_item in spec.components.schemas %}
+                    <div class="api-components_schemas_item">
+                        <div class="schema_item-name"><a href="#components/schemas/{{ schema_item[0] }}">{{schema_item[0]}}</a></div>
+                        <div class="schema_item-type"> {{schema_item[1].type}} </div>
+                        <div class="schema_item-items"> {{schema_item[1].properties}} </div>
+                    </div>
+                {% endfor %}
             </div>
             </div>
         {% endif %}
@@ -14,7 +20,7 @@
         {% if spec.components.parameters %}
             <div class="api-components_parameters">
             <h3>Parameters</h3>
-            <div class="api-components_parameters_item">
+            <div class="api-components_parameters_items">
                 {{ spec.components.parameters }}
             </div>
             </div>
@@ -23,7 +29,7 @@
         {% if spec.components.responses %}
             <div class="api-components_responses">
             <h3>Responses</h3>
-            <div class="api-components_responses_item">
+            <div class="api-components_responses_items">
                 {{ spec.components.responses }}
             </div>
             </div>
@@ -32,7 +38,7 @@
         {% if spec.components.examples %}
             <div class="api-components_examples">
             <h3>Examples</h3>
-            <div class="api-components_examples_item">
+            <div class="api-components_examples_items">
                 {{ spec.components.examples }}
             </div>
             </div>
@@ -41,7 +47,7 @@
         {% if spec.components.requestBodies %}
             <div class="api-components_requestbodies">
             <h3>RequestBodies</h3>
-            <div class="api-components_requestbodies_item">
+            <div class="api-components_requestbodies_items">
                 {{ spec.components.requestBodies }}
             </div>
             </div>
@@ -50,7 +56,7 @@
         {% if spec.components.headers %}
             <div class="api-components_headers">
             <h3>Headers</h3>
-            <div class="api-components_headers_item">
+            <div class="api-components_headers_items">
                 {{ spec.components.headers }}
             </div>
             </div>
@@ -59,7 +65,7 @@
         {% if spec.components.securitySchemes %}
             <div class="api-components_securityschemes">
             <h3>SecuritySchemes</h3>
-            <div class="api-components_securityschemes_item">
+            <div class="api-components_securityschemes_items">
                 {{ spec.components.securitySchemes }}
             </div>
             </div>
@@ -68,7 +74,7 @@
         {% if spec.components.links %}
             <div class="api-components_links">
             <h3>Links</h3>
-            <div class="api-components_links_item">
+            <div class="api-components_links_items">
                 {{ spec.components.links }}
             </div>
             </div>
@@ -77,7 +83,7 @@
         {% if spec.components.callbacks %}
             <div class="api-components_callbacks">
             <h3>Callbacks</h3>
-            <div class="api-components_callbacks_item">
+            <div class="api-components_callbacks_items">
                 {{ spec.components.callbacks }}
             </div>
             </div>

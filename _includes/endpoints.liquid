@@ -78,10 +78,8 @@
             </div>
         {% endif %}
         <!--  Рендеринг тела запроса -->
-        {% if operation.requestBody %}
-            <div class="api-paths__body">Тело запроса:</div>
-            {{ operation.requestBody }}
-        {% endif %}
+        {%- include request_body.liquid -%}
+        
         </div>
     {% endfor %}
 {% endfor %}

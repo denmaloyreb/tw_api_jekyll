@@ -1,0 +1,95 @@
+{% if operation.requestBody %}
+    <div class="api-paths__requestBody">
+    <div class="api-paths__body">Тело запроса</div>
+    {% if operation.requestBody.description %}
+        <div>Описание объекта: {{ operation.requestBody.description }}</div>
+    {% endif %}
+    {% if operation.requestBody.required %}
+        <div>{{ operation.requestBody.required }}</div>
+    {% endif %}
+    <!--  Рендеринг тела запроса, которое передается по ссылке--> 
+    {% if operation.requestBody.content.['application/json'].schema['$ref'] %}
+        {% assign ref_string = operation.requestBody.content.['application/json'].schema['$ref'] %}
+        {% assign dynamic_path = "spec." | append: ref_string | remove: "#/" | replace: "/", "." %}
+        {% assign transformed_dynamic_path = dynamic_path |  split: '.' %}
+        {% for item in transformed_dynamic_path %}
+            {% comment %} {{ item }}</br> {% endcomment %}
+        {% endfor %}
+        {% assign result_object = spec %}
+        {% for part in transformed_dynamic_path %}
+            {% if part != "" and part != "spec" %}
+                {% assign result_object = result_object[part] %}
+            {% endif %}
+        {% endfor %}
+        <!-- Рендеринг полей объекта -->
+        {% for item in result_object.properties %}
+            <div class="api-paths__body-item">
+            <!-- Если поле объекта — ссылка на объект (1 уровень вложенности) -->    
+            {% if item[1].['$ref'] %}
+                    <div class="api-paths__body-item-name"><b>{{ item[0] }}</b>: <span>object</span></div>
+                    {% assign item_path1 = item[1].['$ref'] %}
+                    {% assign item_dynamic_path1 = "spec." | append: item_path1 | remove: "#/" | replace: "/", "." %}
+                    {% assign item_transformed_dynamic_path1 = item_dynamic_path1 |  split: '.' %}
+                    {% assign item_result_object_1 = spec %}
+                        {% for part in item_transformed_dynamic_path1 %}
+                            {% if part != "" and part != "spec" %}
+                                {% assign item_result_object_1 = item_result_object_1[part] %}
+                            {% endif %}
+                        {% endfor %}
+                    <div class="api-paths__body-item1">
+                        {% for item_result_object_1_property in item_result_object_1.properties %}
+                            <div class="api-paths__body-item1-inner">
+                                <div class="api-paths__body-item-name"> <b>{{item_result_object_1_property[0]}}</b>: <span>{{ item_result_object_1_property[1].type }}</span></div>
+                                <div class="api-paths__body-item-description">{{ item_result_object_1_property[1].['description'] }}</div>
+                                    {% if item_result_object_1_property[1].['example'] %}
+                                        <div class="api-paths__body-item-example"><span><i>Пример значения:</i></span> {{ item_result_object_1_property[1].['example'] }}</div>
+                                    {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    {% comment %} <div> {{item_transformed_dynamic_path1 | join: ", "}} </div>
+                    <div class="api-paths__body-item1"> {{ item_result_object_1.properties}} </div> {% endcomment %}
+                {% else %}
+                    <div class="api-paths__body-item-name"><b>{{ item[0] }}</b>: <span>{{ item[1].['type'] }}</span></div>
+                {% endif %}
+                <div class="api-paths__body-item-description">{{ item[1].['description'] }}</div>
+                {% if item[1].['example'] %}
+                    <div class="api-paths__body-item-example"><span><i>Пример значения:</i></span> {{ item[1].['example'] }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <!--  Рендеринг тела запроса, которое описано прямо в эндпоинте-->
+    {% if operation.requestBody.content.['application/json'].schema.properties %}
+        {% assign properties = operation.requestBody.content.['application/json'].schema.properties %}
+            {% for property in properties %}
+                {% assign property_name = property[0] %}
+                {% assign property_value = property[1] %}
+                <div class="api-paths__body-item">
+                    <div class="api-paths__body-item-name"><b>{{ property_name }}</b>: <span>{{ property_value.['type'] }}</span></div>
+                    <div class="api-paths__body-item-description">{{ property_value.['description'] }}</div>
+                    {% if property_value.['example'] %}
+                        <div class="api-paths__body-item-example"><span><i>Пример значения:</i></span> {{ property_value.['example'] }}</div>
+                    {% endif %}
+                    <!-- Если поле объекта — объект. описанный прямо здесь (1 уровень вложенности) -->
+                    {% if property_value.properties %}
+                        {% assign item_inner_path1 = property_value.properties %}
+                        <div class="api-paths__body-item1">
+                            {% for info_inner_path in item_inner_path1 %}
+                                <div class="api-paths__body-item1-inner">
+                                    <div class="api-paths__body-item-name"><b>{{ info_inner_path[0] }}</b>: <span>{{ info_inner_path[1].['type'] }}</span></div>
+                                    <div class="api-paths__body-item-description">{{ info_inner_path[1].['description'] }}</div>
+                                    {% if info_inner_path[1].['example'] %}
+                                        <div class="api-paths__body-item-example"><span><i>Пример значения:</i></span> {{ info_inner_path[1].['example'] }}</div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+    {% endif %}
+    </div>
+{% endif %}
+

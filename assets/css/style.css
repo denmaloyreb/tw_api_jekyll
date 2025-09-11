@@ -2,7 +2,7 @@
 
 a {
     text-decoration: none;
-    color: rgb(72, 71, 71);
+    color: #484747;
 }
 
 /* Стили для wrapper */
@@ -17,6 +17,10 @@ a {
     padding-right: 1%;
 }
 
+.schema-toc_link_wrapper {
+    display: flex;
+}
+
 .schema-toc_title,
 .schema-toc_components {
     margin-top: .7em;
@@ -28,6 +32,9 @@ a {
 .schema-toc_paths {
     position: sticky;
     top: 0;
+    min-width: 15vw;
+    max-width: 22vw;
+    display: block;
     /* Прокрутка для toc */
     z-index: 10;
     background-color: #f5eff5;
@@ -36,50 +43,59 @@ a {
     overflow-y: auto;
 }
 
-.schema-toc_paths {
-    display: block;
+.schema-toc_path {
+    padding-left: 5px;
 }
 
+.schema-toc_link {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    min-width: 14vw;
+}
+
+.schema-toc_link:hover .schema-toc_path {
+    white-space: normal;
+    word-break: break-all;
+}
+
+
 .schema-toc_prefix-get {
-    background-color: rgb(47, 129, 50);
-    color: white;
+    background-color: #2f8132;
+    color: #ffffff;
     padding: 1px 10px 1px 10px;
     border-radius: 10px;
 }
 
 .schema-toc_prefix-post {
-    background-color: rgb(24, 111, 175);
-    color: white;
+    background-color: #186faf;
+    color: #ffffff;
     padding: 1px 10px 1px 10px;
     border-radius: 10px;
 }
 
 .schema-toc_prefix-patch {
     background-color: rgb(191, 88, 29);
-    color: white;
+    color: #ffffff;
     padding: 1px 10px 1px 10px;
     border-radius: 10px;
 }
 
 .schema-toc_prefix-delete {
-    background-color: rgb(204, 51, 51);
-    color: white;
+    background-color: #cc3333;
+    color: #ffffff;
     padding: 1px 10px 1px 10px;
     border-radius: 10px;
 }
 
 .schema-toc_prefix-put {
-    background-color: rgb(149, 80, 124);
-    color: white;
+    background-color: #95507c;
+    color: #ffffff;
     padding: 1px 10px 1px 10px;
     border-radius: 10px;
-}
-
-.schema-toc_link {
-    display: block;
-    white-space: nowrap;
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 /* Стили для методов */
@@ -145,3 +161,21 @@ a {
     border: 1px solid #e1e4e8;
 }
 
+/* Стили для тела запроса */
+
+.api-paths__body-item {
+    background-color: #e5f1fb;
+    margin-bottom: .5em;
+}
+
+.api-paths__body-item1 {
+    margin-top: .5em;
+    
+}
+
+.api-paths__body-item1-inner {
+    background-color: #9fa3a5;
+    margin-left: .7em;
+    margin-bottom: .5em;
+    margin-left: .7em;
+}

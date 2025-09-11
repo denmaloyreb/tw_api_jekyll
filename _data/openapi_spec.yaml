@@ -25,6 +25,129 @@ tags:
   - name: skills
     description: Методы для работы с навыками
 paths:
+  /techwriters/{test_request_body}/with_body_inline:
+    post:
+      tags:
+        - techwriters
+      summary: Метод для тестирования рендеринга тела запроса
+      description: Метод для тестирования рендеринга тела запроса с телом, описанным прямо в методе
+      operationId: testТw
+      parameters:
+        - name: test_request_body
+          in: path
+          description: test_request_body
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 123
+      requestBody:
+        description: Данные технического писателя (тело описано прямо в методе)
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: Имя технического писателя
+                  example: Вася
+                secondName:
+                  type: string
+                  description: Фамилия технического писателя
+                  example: Пупкин
+                patronymic:
+                  type: string
+                  description: Отчество технического писателя. Необязательное поле
+                  example: Иванович
+                experience:
+                  type: integer
+                  format: int64
+                  description: Опыт работы (в месяцах)
+                  example: 12
+                phoneNumber:
+                  type: string
+                  format: phone
+                  description: Номер телефона для связи
+                  example: +71234567890
+                email:
+                  type: string
+                  format: email
+                  description: Адрес электронной почты технического писателя
+                  example: pupkin@mail.pup
+                skill:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      description: Идентификатор навыка
+                      example: 25
+                    skillName:
+                      type: string
+                      description: Название навыка
+                      example: Ручное документирование API
+                    skillDescription:
+                      type: string
+                      description: Описание навыка
+                      example: Создание документации на API, тестирование, создание описаний вручную
+                    alias:
+                      type: string
+                      description: Алиас навыка
+                      example: manualApiDocs
+                  required:
+                    - id
+                    - skillName
+                    - skillDescription
+                    - alias
+              required:
+                - firstName
+                - secondName
+                - experience
+                - skills
+                - email
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Techwriter'
+        '405':
+          description: Неверный формат ввода
+  /techwriters/{test_request_body}/with_body_link:
+    post:
+      tags:
+        - techwriters
+      summary: Метод для тестирования рендеринга тела запроса
+      description: Метод для тестирования рендеринга тела запроса с вложенным полем-объектом по ссылке
+      operationId: testТw
+      parameters:
+        - name: test_request_body
+          in: path
+          description: test_request_body
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 123
+      requestBody:
+        description: Данные технического писателя
+        required: true
+        content:
+          'application/json':
+            schema:
+              $ref: "#/components/schemas/TechwriterTestBody"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Techwriter'
+        '405':
+          description: Неверный формат ввода
   /techwriters:
     get:
       tags:
@@ -462,6 +585,44 @@ components:
             format: int64
             example: 1
           example: [1, 2, 3]
+      required:
+        - firstName
+        - secondName
+        - experience
+        - skills
+        - email
+    TechwriterTestBody:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Имя технического писателя
+          example: Вася
+        secondName:
+          type: string
+          description: Фамилия технического писателя
+          example: Пупкин
+        patronymic:
+          type: string
+          description: Отчество технического писателя. Необязательное поле
+          example: Иванович
+        experience:
+          type: integer
+          format: int64
+          description: Опыт работы (в месяцах)
+          example: 12
+        phoneNumber:
+          type: string
+          format: phone
+          description: Номер телефона для связи
+          example: +71234567890
+        email:
+          type: string
+          format: email
+          description: Адрес электронной почты технического писателя
+          example: pupkin@mail.pup
+        skill:
+          $ref: "#/components/schemas/Skill"
       required:
         - firstName
         - secondName
